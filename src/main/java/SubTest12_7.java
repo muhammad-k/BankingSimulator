@@ -15,7 +15,7 @@ public class SubTest12_7 {
     public static void main(String args[]) {
 
         Scanner scanner = new Scanner(System.in);
-        Bank Chase = new Bank(openTime, closeTime, bankBalance);
+        Bank Chase = new Bank();
 
         //Setting Bank details and current time
         setBankDetails(scanner);
@@ -65,7 +65,7 @@ public class SubTest12_7 {
 
         if (choice == 1)
             System.out.print("This is a current customer");
-        else if (choice == 0)
+        else if (choice == 2)
             return addCustomer(scanner, Chase);
         else {
             System.out.println("You have entered an incorrect input, please try again");
@@ -82,6 +82,8 @@ public class SubTest12_7 {
 
 
     public static Patron addCustomer(Scanner scanner, Bank Chase) {
+
+        scanner.nextLine();
 
         //Taking in the name
         System.out.print("Please enter your first name: ");
@@ -104,9 +106,9 @@ public class SubTest12_7 {
         System.out.println("How much cash you carrying?");
         Double inWallet = scanner.nextDouble();
 
-        Patron newCustomer = new Patron(firstName, lastName, dob, inWallet);
-        Chase.addPatron(newCustomer);
-        return newCustomer;
+        Patron currentNewCustomer = new Patron(firstName, lastName, dob, inWallet);
+        Chase.addPatron(currentNewCustomer);
+        return currentNewCustomer;
     }
 
     public static Boolean searchCustomer(Scanner scanner, Bank Chase, String firstName, String lastName, DateTime dob) {
@@ -116,5 +118,7 @@ public class SubTest12_7 {
     public static Boolean searchCustomerbyID(Scanner scanner, Bank Chase, UUID userID){
         return Chase.customerSearch(userID);
     }
+
+
 
 }

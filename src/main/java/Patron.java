@@ -17,7 +17,7 @@ public class Patron {
         this.firstName = firstName;
         this.lastName = lastName;
         this.dateOfBirth = dateOfBirth;
-        setIsUnder18(this.dateOfBirth);
+        this.isMinor = setIsUnder18(dateOfBirth);
         this.inWallet = inWallet;
         patronID = UUID.randomUUID();
     }
@@ -35,32 +35,35 @@ public class Patron {
         return dateOfBirth;
     }
 
-    private void setIsUnder18(DateTime dateOfBirth){
+    private Boolean setIsUnder18(DateTime dateOfBirth){
         //Setting time and checking the difference in years
         DateTime currentDate = new DateTime();
         currentDate.getChronology();
         Period period = new Period(dateOfBirth, currentDate);
 
         //Basing availability of accounts on age
-        if((period.getYears()<= 18))
-            this.isMinor = false;
+        if(period.getYears() > 18)
+            return false;
         else
-            this.isMinor = true;
+            return true;
+
     }
 
-    public UUID getPatronID(){
+    Double getInWallet(){return this.inWallet;}
+
+    UUID getPatronID(){
         return this.patronID;
     }
 
-    public DateTime getDateofBirth(){
+    DateTime getDateOfBirth(){
         return this.dateOfBirth;
     }
 
-    public Boolean getIsMinor(){
+    Boolean getIsMinor(){
         return isMinor;
     }
 
-    public String getFirstName(){
+    String getFirstName(){
         return this.firstName;
     }
 
@@ -77,6 +80,15 @@ public class Patron {
             }
             return true;
         }
+
+    public void postDepositInWalletBalance(Double balance){
+        this.inWallet -= balance;
+    }
+
+    public void postWithdrawalInWalletBalance(Double balance){
+        this.inWallet += balance;
+    }
+
 
     //Adding a new customer
 
