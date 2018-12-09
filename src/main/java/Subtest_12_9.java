@@ -1,8 +1,20 @@
 import org.joda.time.DateTime;
 
-public class Subtest {
+public class Subtest_12_9 {
 
     static Bank Chase = new Bank();
+
+    //This test shows the add patron and the handling of balances.
+    /*
+    * TRANSACTION
+    * TRANSACTION LIST
+    * SAVINGS ACCOUNTS
+    * TELLER
+    *
+    * These three classes need to be fleshed out.
+    *
+    * REPORT
+    * */
 
     public static void main(String args[]) {
 
